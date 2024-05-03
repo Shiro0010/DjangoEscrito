@@ -1,0 +1,96 @@
+Seleccionar interprete y ultima version de python:
+ para ello hay que verificar las variables de entorno
+ y usando ctrl + shift + p/ seleccionar interprete de python/ultima version; para usar la version mas reciente de python
+
+Creacion de un entorno virtual:
+    para que?:
+        para evitar que las dependencias de dos proyectos distintos entren en conflicto por variacion de versiones instaladas
+
+    para crear un entorno virtual, usaremos:
+        Python -m venv nombredelentorno
+    para usarlo:
+        haremos lo mismo que cuando seleccionamos el intérprete. pero en este caso, nos aparecerá una nueva
+        opción pero con el nombre del entorno virtual.
+
+HABLEMOS ALGO DE DJANGO:
+    Mantiene una arquitectura model-template-view, algo asi como un modelo.vista.controlador, esto separa las funciones en partes
+    el model:   
+        se encarga de trabajar con la base de datos
+    el template: 
+        se encarga de la visualizacion; como el reenderizado de html, lo visual en general.
+    la view: 
+        va a ser el controlador, el puente entre el usuario, base de datos y reenderizacion.
+    
+end
+Dependencias instaladas, comandos usados:
+
+    pip install app==version = para una instalacion especifica, por ejemplo:
+        pip install django==4.2
+    pip freeze = para visualizar las dependencias instaladas
+
+CREACION DE UN PROYECTO EN DJANGO:
+    se ejecuta:    
+        django-admin startproject NombreDelProyecto (por ejemplo, limón)
+    dentro de la estructura de un proyecto Django vamos a encontrar los archivos, ademas de una carpeta con
+    el mismo nombre del proyecto:
+        manage.py:
+            es como la linea de comandos que usaremos para la creacion de aplicaciones, para la interaccion con nuestro
+            servidor web, entre otras. es un archivo que ayuda con la creacion de aplicaciones en general.
+        limón/
+            settings.py:
+                desde este archivo se veran todas las configuraciones de nuestro servidor web, se pueden configurar las apps
+                que esten abiertas, la conexion a base de datos, middlewares (como cors), templates... toda la configuracion de la
+                app en general.
+            urls.py:
+                aqui se definen los paths a los que los usuarios pueden ingresar, es como un "routes" en express.
+            wsgi.py:
+            asgi.py:
+
+            __init__.py:
+                es como un identificador que indica que la toda la carpeta del proyecto es un modulo por asi decirlo.
+FUNDAMENTOS DE UN PROYECTO EN DJANGO  (aprendiendo a usarlo)
+   migraciones:
+        en django se trabaja con un ORM... esto significa que podemos crear una clase con sus atributos y cuando aplicamos la
+        migracion, django convierte esa clase (u objeto) en SQL 
+    para empezar con nuestras migraciones, vamos a movernos a la carpeta de nuestro proyecto:
+        es decir, ahora mismo tendriamos una estructura como esta:
+        /Directorio: (usted está aquí)
+            /Limon: <--- (nos moveremos aqui)
+                /limon: 
+                    __init__.py
+                    asgi.py
+                    settings.py
+                    urls.py
+                    wsgi.py
+                manage.py  
+            /venv:
+                /include
+                /lib
+                /Scripts
+                pyvenv.cfg 
+
+    vamos a hacer un:
+        cd limon (la carpeta señalada)
+
+    para crear la migracion: ejecutamos...
+        python manage.py migrate (esto crea una archivo db.sqlite3 para la base de datos)
+            a la hora de trabajar con produccion, como docker, es preferible cambiar la base de datos en settings.
+            asi se evitan errores y lag, eso luego lo estaré actualizando. ademas que es de su propio servidor web
+    
+    EXPLICANDO EL ARCHIVO SETTINGS.PY:
+        FASES:
+            en el archivo setting hay una variable llamada Debug, esta nos expresa si el proyecto esta en fase de produccion o de
+            desarrollo.
+                si es igual a true, es porque esta en fase de desarrollo; por el contrario, si está en false, esta´ria en producción.
+        HOSTS: 
+            debajo de la variable debug, hay una lista llamada Allowed Hosts, aqui basicamente podemos bloquear o permitir IP's ajajdak
+            se pueden bloquear por pais, area, zona, etc, dependiendo del rango que se establezca.
+            cuando estamos en fase de desarrollo, no se le da importancia, pero en fase de produccion, si es necesario
+            especificar el rango de Ip's permitidas.
+        INSTALLED_APPS:
+            dentro de esta lista van a estar especificadas todas las aplicaciones que vayamos a usar/crear
+            quejesto? es como un componente de nuestro sitio.
+
+EJECUCION:
+    usaremos: 
+        python manage.py runserver
