@@ -89,8 +89,17 @@ FUNDAMENTOS DE UN PROYECTO EN DJANGO  (aprendiendo a usarlo)
             especificar el rango de Ip's permitidas.
         INSTALLED_APPS:
             dentro de esta lista van a estar especificadas todas las aplicaciones que vayamos a usar/crear
-            quejesto? es como un componente de nuestro sitio.
+            quejesto? es como un componente de nuestro sitio. como los componentes de angular o los distintos modulos trabajados
+            en express.
+        MIDDLEWARES;
+            dentro de esta lista... van los middlewares xd
+        DATABASES:
+            Aqui se especifican todas las bases de datos que se vayan a utilizar.
+            por defecto viene con sqlite3, pero es mejor cambiarlo cuando pasemos a fase de produccion
+        entre otros campos como STATIC_URL, que son como los Assets en angular.
 
 EJECUCION:
     usaremos: 
         python manage.py runserver
+
+por ahora se queda asi esta vaina, me voy a dormir, like para parte 2 de la primera parte y parte 2 de las notas generales.
